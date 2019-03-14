@@ -29,23 +29,44 @@
         </form>
         <hr/>
         
-        <% float par = 0;%><!-- valor da parcela inicial -->
-        <% float vpar = 0;%><!-- valor da parcela variante no mes -->
-        <% float acum = 0;%><!-- apresentará o valor total do financiamento -->
+        <% double par = 0;%><!-- valor da parcela inicial -->
+        <% double vpar = 0;%><!-- valor da parcela variante no mes -->
+        <% double acum = 0;%><!-- apresentará o valor total do financiamento -->
         <% if (request.getParameter("calcular")!=null){ %>
             <% try{ %>
-                <% float v = Float.parseFloat(request.getParameter("valor")); %>
+                <% double v = Double.parseDouble(request.getParameter("valor")); %>
                 <% int m = Integer.parseInt(request.getParameter("mes")); %>
-                <% float t = Float.parseFloat(request.getParameter("taxa")); %>
-                <% par = v/m;%>
+                <% double t = Double.parseDouble(request.getParameter("taxa")); %>
+                <%  par = v/m;%>
+                <%t = t/100;%><!-- Passando de porcentagem para decimal -->
                 Valor financiado de R$ <%=v%><br/>
                 Taxa mensal de <%=t%>%<br/>
                 Em <%=m%> meses<br/><br/>
-                
+                <%double sd = v;%>
+                <%double amortizacao = sd/m;%>
+                <table border='0' style='text-align:center' align='center' cellspacing='0' cellpadding='4'>
+                    <th width="3%">Parcela</th>
+                    <th width="5%">Valor da Parcela</th>
+                    <th width="5%">Juros</th>
+                    <th width="5%">Amortização</th>
+                    <th width="5%">Saldo devedor</th>
+                </table>
                 <% for (int i = 0; i<m; i++){ %>
-                    <% vpar = par + t*(v-(i*par)); %>
+                    <% double n = 0;%>
+                    <% vpar = par + t*(v-(n*par)); %>
                     <% acum+=vpar;%>
-                    &nbsp; <%=i+1%>º Parcela tem valor de R$<%out.print(String.format("%.2f",vpar));%><br/>
+                    
+                    <table border='1' style='text-align:center' align='center' cellspacing='0' cellpadding='4'>
+                        <tr bgcolor='#e0e0eb'>
+                        <td width="3%">&nbsp; <%=i+1%> º</td><!-- Numero da parcela-->
+                        <td width='5%'>&nbsp;  R$ <%=vpar%> </td><!-- Valor da parcela-->
+                        <td width='5%'>&nbsp; <%out.print(String.format("%.2f",sd*t));%></td><!-- valor do Juros-->
+                        <td width='5%'>&nbsp; <%out.print(String.format("%.2f",amortizacao));%></td><!-- valor do amortização--> 
+                        <td width='5%'>&nbsp; <%=sd%></td><!-- valor do Saldo devedor--> 
+                        </tr>
+                    </table>
+                    <%sd-=amortizacao;%>
+                    <%n++;%>
                 <%} %>
                 <h3>O valor total do seu financiamento será de R$ <%out.print(String.format("%.2f",acum));%></h3>
             <%} catch(Exception e) { %>
