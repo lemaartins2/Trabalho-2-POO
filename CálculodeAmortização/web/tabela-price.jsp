@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Tabela Price</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%@include file="WEB-INF/jspf/menu.jspf"%>
+        <h1>Tabela Price</h1>
+        
+        <%@include file="WEB-INF/jspf/footer.jspf"%>
     </body>
 </html>
