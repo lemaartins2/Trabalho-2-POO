@@ -19,13 +19,20 @@
         </style>
     </head>
     <body>
-        <%@include file="WEB-INF/jspf/header.jspf"%>
-
         <div id="main" class="container-fluid">
-            <h1 class="text text-center">Seja bem-vindo ao nosso sistema de cálculo de amortização online!</h1>
-            <h3 class="text text-center">Aqui você poderá realizar cálculos de amortização americana, amortização constante e tabela price.</h3>
+            <h1 class="text text-center">SISTEMA DE AMORTIZAÇÃO ONLINE!</h1>
+            <h3 class="text text-center">VOCÊ SERÁ REDIRECIONADO PARA O SISTEMA EM <span id="contador">10</span> SEGUNDOS...</h3>
         </div>
-        
-        <%@include file="WEB-INF/jspf/footer.jspf"%>
+
+        <script>
+            var count = 10;
+            setInterval(function(){
+                count--;
+                document.getElementById('contador').innerHTML = count;
+                if (count === 1) {
+                    window.location.href = 'home.jsp';
+                }
+            },1000);
+        </script>
     </body>
 </html>
