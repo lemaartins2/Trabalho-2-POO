@@ -1,9 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : 13/03/2019, 19:30:24
-    Author     : Leandro Martins
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
