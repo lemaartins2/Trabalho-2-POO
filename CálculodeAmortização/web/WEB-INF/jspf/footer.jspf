@@ -7,7 +7,7 @@
 
 <footer class="footer">
     <div class="container-fluid bg-light text-center">
-        <h4>Desenvolvido por Daiane, Leandro e Maurici - Todos os direitos reservados</h4>
+        <h4>Desenvolvido por Daianne, Leandro e Maurici - Todos os direitos reservados</h4>
         <%
             DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
             Date today = Calendar.getInstance().getTime();
